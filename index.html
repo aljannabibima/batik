@@ -1,190 +1,345 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>BatikVerse</title>
-  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .hero-img {
+      max-height: 500px;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    .model-thumb {
+      height: 400px;
+      width: 100%;
+      object-fit: cover;
+      border-radius: .5rem;
+      cursor: pointer;
+    }
+
+    /* Samakan ukuran gambar motif */
+    .motif-img {
+      height: 220px;
+      object-fit: cover;
+      border-radius: .5rem .5rem 0 0;
+    }
+
+    /* Lightbox */
+    #lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, .8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1055;
+    }
+
+    #lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: .5rem;
+      box-shadow: 0 0 15px rgba(0, 0, 0, .5);
+    }
+
+    #lightbox .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 3rem;
+      color: white;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    #lightbox .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 3rem;
+      color: white;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    #prevBtn {
+      left: 30px;
+    }
+
+    #nextBtn {
+      right: 30px;
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container">
-    <a class="navbar-brand fw-bold" href="#">BatikVerse</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-        <li class="nav-item"><a class="nav-link" href="#model">Model</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<!-- Hero Section -->
-<section class="py-5 text-center bg-light">
-  <div class="container">
-    <h1 class="display-5 fw-bold">Get to know Batik in BatikVerse</h1>
-    <img src="https://via.placeholder.com/600x300" class="img-fluid mt-4" alt="Batik Hero">
-  </div>
-</section>
-
-<!-- About Batik -->
-<section id="about" class="py-5">
-  <div class="container">
-    <h2 class="text-center mb-4">About Batik</h2>
-    <div class="row align-items-center">
-      <div class="col-md-6 mb-4 mb-md-0">
-        <img src="https://via.placeholder.com/500x300" class="img-fluid mb-3" alt="Batik">
-        <img src="https://via.placeholder.com/150" class="img-fluid" alt="Small Batik">
-      </div>
-      <div class="col-md-6">
-        <p>
-          Batik is a traditional textile art from Indonesia known for its intricate patterns and cultural meanings.
-          It has been recognized by UNESCO as a Masterpiece of Oral and Intangible Heritage of Humanity.
-        </p>
-        <a href="#" class="btn btn-primary mt-2">See More About</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Motif Batik -->
-<section class="py-5 bg-light">
-  <div class="container">
-    <h2 class="text-center mb-4">Motif Batik</h2>
-    <p class="text-center">Jelajahi ragam motif batik</p>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-      <div class="col">
-        <div class="card h-100">
-          <div class="card-body">
-            <h5 class="card-title">Batik Pekalongan</h5>
-            <p class="card-text">Motif batik pesisir dengan warna cerah dan motif flora fauna.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <div class="card-body">
-            <h5 class="card-title">Batik Solo / Surakarta</h5>
-            <p class="card-text">Batik klasik dengan motif yang sarat makna filosofis.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <div class="card-body">
-            <h5 class="card-title">Batik Yogyakarta</h5>
-            <p class="card-text">Batik dengan warna sogan khas Jawa dan motif tradisional.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <div class="card-body">
-            <h5 class="card-title">Batik Cirebon</h5>
-            <p class="card-text">Motif mega mendung dan nuansa pesisir yang indah.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <div class="card-body">
-            <h5 class="card-title">Batik Madura</h5>
-            <p class="card-text">Warna cerah berani dengan motif unik Madura.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <div class="card-body">
-            <h5 class="card-title">Batik Betawi</h5>
-            <p class="card-text">Motif khas budaya Betawi penuh warna.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Filosofi Batik -->
-<section class="py-5">
-  <div class="container">
-    <h2 class="text-center mb-4">Filosofi Batik</h2>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-      <div class="col">
-        <div class="card h-100 text-center">
-          <div class="card-body">
-            <h5 class="card-title">Batik Parang</h5>
-            <p class="card-text">Melambangkan keberanian dan pantang menyerah.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100 text-center">
-          <div class="card-body">
-            <h5 class="card-title">Batik Mega Mendung</h5>
-            <p class="card-text">Melambangkan kesabaran dan ketenangan.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100 text-center">
-          <div class="card-body">
-            <h5 class="card-title">Batik Sidomukti</h5>
-            <p class="card-text">Melambangkan kemakmuran dan kebahagiaan.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Model Batik -->
-<section id="model" class="py-5 bg-light">
-  <div class="container">
-    <h2 class="text-center mb-4">Model Batik</h2>
-    <div class="row text-center">
-      <div class="col-md-6">
-        <img src="https://via.placeholder.com/400x400" class="img-fluid rounded" alt="Model Batik 1">
-      </div>
-      <div class="col-md-6">
-        <img src="https://via.placeholder.com/400x400" class="img-fluid rounded" alt="Model Batik 2">
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Footer -->
-<footer class="py-5 bg-dark text-light">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4">
-        <h5>Tentang Batik</h5>
-        <p>Batik adalah warisan budaya Indonesia yang kaya akan makna dan keindahan.</p>
-      </div>
-      <div class="col-md-4">
-        <h5>Hubungi Kami</h5>
-        <ul class="list-unstyled">
-          <li>Email: info@batikverse.com</li>
-          <li>Telepon: +62 812 3456 7890</li>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">BatikKita</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#model">Model</a></li>
         </ul>
       </div>
-      <div class="col-md-4">
-        <h5>Lokasi</h5>
-        <p>Jl. Batik No.1, Yogyakarta</p>
-        <img src="https://via.placeholder.com/150x100" class="img-fluid" alt="Map">
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="py-5 text-center bg-light">
+    <div class="container">
+      <h1 class="display-5 fw-bold">Mengenal Batik di Indonesia</h1>
+      <img src="foto/luawasssss.jpg" class="hero-img mt-4" alt="Batik Hero">
+    </div>
+  </section>
+
+  <!-- Pengenalan Batik -->
+  <section id="about" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Pengenalan Batik</h2>
+      <div class="row align-items-center">
+        <div class="col-md-6 mb-4 mb-md-0">
+          <img src="foto/batikkkkkk.jpeg" class="img-fluid mb-3" alt="Batik">
+          <img src="foto/motiffff.jpeg" class="img-fluid" alt="Motif Batik">
+        </div>
+        <div class="col-md-6">
+          <p><strong>Asal Usul:</strong> Batik merupakan seni tekstil tradisional dari Indonesia yang sudah ada sejak
+            zaman kerajaan. Teknik membatik telah diwariskan secara turun-temurun dan memiliki keterkaitan erat dengan
+            budaya dan nilai-nilai masyarakat Jawa.</p>
+          <p><strong>Motif:</strong> Setiap daerah memiliki ciri khas motif batik yang berbeda, seperti Batik Pekalongan
+            yang penuh warna, Batik Solo yang klasik, hingga Batik Cirebon dengan motif Mega Mendung.</p>
+          <p><strong>Filosofi:</strong> Di balik keindahannya, batik menyimpan makna filosofis. Misalnya, motif Parang
+            melambangkan keteguhan, Mega Mendung menggambarkan kesabaran, dan Sidomukti menyimbolkan harapan akan
+            kemakmuran.</p>
+          <a href="https://id.wikipedia.org/wiki/Batik" class="btn btn-primary mt-2">Pelajari Lebih Lanjut</a>
+        </div>
       </div>
     </div>
-  </div>
-</footer>
+  </section>
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Motif Batik -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-4">Motif Batik</h2>
+      <p class="text-center">Jelajahi ragam motif batik</p>
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+          <div class="card h-100">
+            <img src="foto/pekalongan.jpeg" class="card-img-top motif-img" alt="Batik Pekalongan">
+            <div class="card-body">
+              <h5 class="card-title">Batik Pekalongan</h5>
+              <p class="card-text">Motif batik pesisir dengan warna cerah dan motif flora fauna.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <img src="foto/solo.jpeg" class="card-img-top motif-img" alt="Batik Solo">
+            <div class="card-body">
+              <h5 class="card-title">Batik Solo / Surakarta</h5>
+              <p class="card-text">Batik klasik dengan motif yang sarat makna filosofis.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <img src="foto/jogja.webp" class="card-img-top motif-img" alt="Batik Yogyakarta">
+            <div class="card-body">
+              <h5 class="card-title">Batik Yogyakarta</h5>
+              <p class="card-text">Batik dengan warna sogan khas Jawa dan motif tradisional.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <img src="foto/cirebon.jpg" class="card-img-top motif-img" alt="Batik Cirebon">
+            <div class="card-body">
+              <h5 class="card-title">Batik Cirebon</h5>
+              <p class="card-text">Motif mega mendung dan nuansa pesisir yang indah.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <img src="foto/madura.jpeg" class="card-img-top motif-img" alt="Batik Madura">
+            <div class="card-body">
+              <h5 class="card-title">Batik Madura</h5>
+              <p class="card-text">Warna cerah berani dengan motif unik Madura.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <img src="foto/betawi.jpeg" class="card-img-top motif-img" alt="Batik Betawi">
+            <div class="card-body">
+              <h5 class="card-title">Batik Betawi</h5>
+              <p class="card-text">Motif khas budaya Betawi penuh warna.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filosofi Batik -->
+  <section class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Filosofi Batik</h2>
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+          <div class="card h-100 text-center">
+            <img src="foto/Batik Parang.jpeg" class="card-img-top motif-img" alt="Batik Parang">
+            <div class="card-body">
+              <h5 class="card-title">Batik Parang</h5>
+              <p class="card-text">Melambangkan keberanian dan pantang menyerah.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100 text-center">
+            <img src="foto/Batik Mega Mendung.jpeg" class="card-img-top motif-img" alt="Batik Mega Mendung">
+            <div class="card-body">
+              <h5 class="card-title">Batik Mega Mendung</h5>
+              <p class="card-text">Melambangkan kesabaran dan ketenangan.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100 text-center">
+            <img src="foto/Batik Sidomukti.jpeg" class="card-img-top motif-img" alt="Batik Sidomukti">
+            <div class="card-body">
+              <h5 class="card-title">Batik Sidomukti</h5>
+              <p class="card-text">Melambangkan kemakmuran dan kebahagiaan.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Model Batik Grid -->
+  <section class="py-5 bg-light" id="model">
+    <div class="container">
+      <h2 class="text-center mb-4">Model Batik</h2>
+      <p class="text-center text-muted">Klik untuk melihat ukuran besar</p>
+      <div class="row row-cols-2 row-cols-md-4 g-3">
+        <div class="col">
+          <img src="foto/modelcirebon.webp" alt="Batik Cirebon" class="model-thumb" onclick="openLightbox(0)">
+        </div>
+        <div class="col">
+          <img src="foto/modeljogja.png" alt="Batik Jogja" class="model-thumb" onclick="openLightbox(1)">
+        </div>
+        <div class="col">
+          <img src="foto/modelsolo.webp" alt="Batik Solo" class="model-thumb" onclick="openLightbox(2)">
+        </div>
+        <div class="col">
+          <img src="foto/modelpekalongan.webp" alt="Batik Sekar" class="model-thumb" onclick="openLightbox(3)">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div id="lightbox">
+    <span class="close-btn" onclick="closeLightbox()">&times;</span>
+    <span class="nav-btn" id="prevBtn" onclick="showNext(-1)">&#10094;</span>
+    <img id="lightbox-img" src="" alt="Preview">
+    <span class="nav-btn" id="nextBtn" onclick="showNext(1)">&#10095;</span>
+  </div>
+
+  <script>
+    const images = [
+      "foto/modelcirebon.webp",
+      "foto/modeljogja.png",
+      "foto/modelsolo.webp",
+      "foto/modelsekar.png"
+    ];
+    let currentIndex = -1;
+
+    function openLightbox(i) {
+      currentIndex = i;
+      document.getElementById('lightbox-img').src = images[i];
+      document.getElementById('lightbox').style.display = 'flex';
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+      currentIndex = -1;
+    }
+    function showNext(direction) {
+      if (currentIndex === -1) return;
+      currentIndex = (currentIndex + direction + images.length) % images.length;
+      document.getElementById('lightbox-img').src = images[currentIndex];
+    }
+
+    // Keyboard control
+    window.addEventListener('keydown', function (e) {
+      const lb = document.getElementById('lightbox');
+      if (window.getComputedStyle(lb).display === 'flex') {
+        if (e.key === 'ArrowRight') {
+          showNext(1);
+        } else if (e.key === 'ArrowLeft') {
+          showNext(-1);
+        } else if (e.key === 'Escape') {
+          closeLightbox();
+        }
+      }
+    });
+  </script>
+
+  <!-- Footer -->
+    <!-- Footer -->
+  <footer class="py-5 bg-dark text-light">
+    <div class="container">
+      <div class="row g-4">
+        <!-- Tentang -->
+        <div class="col-md-4">
+          <h5 class="fw-bold mb-3">Tentang Batik</h5>
+          <p class="small">Batik adalah warisan budaya Indonesia yang kaya akan makna dan keindahan.</p>
+        </div>
+
+        <!-- Kontak -->
+        <div class="col-md-4">
+          <h5 class="fw-bold mb-3">Hubungi Kami</h5>
+          <ul class="list-unstyled small">
+            <li><i class="bi bi-envelope-fill me-2"></i> info@batikverse.com</li>
+            <li><i class="bi bi-telephone-fill me-2"></i> +62 812 3456 7890</li>
+          </ul>
+        </div>
+
+        <!-- Lokasi -->
+        <div class="col-md-4">
+          <h5 class="fw-bold mb-3">Lokasi</h5>
+          <p class="small mb-2">SMKN 5 Malang</p>
+          <div class="ratio ratio-4x3 rounded overflow-hidden shadow">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7903.342039515509!2d112.63321307634834!3d-7.92938699209441!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd629f1b8a28299%3A0xa995c6171f4fe894!2sSMK%20Negeri%205%20Kota%20Malang!5e0!3m2!1sen!2sus!4v1758937060794!5m2!1sen!2sus" 
+              style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <hr class="border-light my-4">
+
+      <div class="text-center small">
+        &copy; 2025 BatikKita. All rights reserved.
+      </div>
+    </div>
+  </footer>
+ <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
